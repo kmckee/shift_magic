@@ -26,9 +26,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-group :assets do
-  gem 'twitter-bootstrap-rails'
-end
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+gem 'less-rails-bootstrap'
 
 group :test do
   gem 'cucumber-rails', :require => false

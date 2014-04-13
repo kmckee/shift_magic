@@ -32,6 +32,8 @@ gem "twitter-bootstrap-rails"
 gem 'less-rails-bootstrap'
 
 group :test do
+  gem 'rspec'
+  gem 'fig_newton'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'page-object'

@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.0)
+    bcrypt (3.1.7)
     builder (3.2.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -60,6 +61,12 @@ GEM
       faker (>= 1.1.2)
       yml_reader (>= 0.2)
     database_cleaner (1.2.0)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -104,6 +111,7 @@ GEM
     mysql2 (0.3.15)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    orm_adapter (0.5.0)
     page-object (0.9.8)
       page_navigation (>= 0.9)
       selenium-webdriver (>= 2.40.0)
@@ -196,7 +204,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    watir-webdriver (0.6.8)
+    warden (1.2.3)
+      rack (>= 1.0)
+    watir-webdriver (0.6.9)
       selenium-webdriver (>= 2.18.0)
     websocket (1.0.7)
     xpath (2.0.0)
@@ -210,6 +220,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner
+  devise
   factory_girl_rails
   fig_newton
   jbuilder (~> 2.0)

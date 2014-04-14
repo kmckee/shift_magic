@@ -1,10 +1,10 @@
 class Login
   include PageObject
  
-  page_url("#{FigNewton.base_url}/login")
+  page_url("#{FigNewton.base_url}/users/sign_in")
 
-  text_field(:username, :id=>'username')
-  text_field(:password, :id=>'password')
+  text_field(:email, :id=>'user_email')
+  text_field(:password, :id=>'user_password')
 
-  button(:login, :value=>'Log In')
+  button(:sign_in, :value=>'Sign in')
 end

@@ -3,6 +3,10 @@ Feature: Employee Administration
   As a manager responsible for creating a schedule for employees 
   I want to keep my employee contact information organized
 
+  Background: 
+    Given I am logged in as an admin
+
+    @wip
   Scenario: Displaying a list of employees 
     Given the following employees have been created: 
       | Name | Mobile Phone         | Email            |

@@ -29,6 +29,9 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'less-rails-bootstrap'
 
+# Authentication
+gem 'devise'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'fig_newton'

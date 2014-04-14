@@ -5,11 +5,11 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @employee.name %></dd>
+  <dd><span id="employee_name"><%= @employee.name %></span></dd>
   <dt><strong><%= model_class.human_attribute_name(:mobile_phone) %>:</strong></dt>
-  <dd><%= @employee.mobile_phone %></dd>
+  <dd><span id="employee_mobile_phone"><%= @employee.mobile_phone %></span></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @employee.email %></dd>
+  <dd><span id="employee_email"><%= @employee.email %></span></dd>
 </dl>
 
 <div class="form-actions">

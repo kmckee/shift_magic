@@ -11,16 +11,17 @@ Feature: Employee Administration
     Then I should see the following employees listed: 
       | Name | Mobile Phone         | Email            |
       | Kyle | 440-555-1234         | kmckee@gmail.com |
-@wip
+  
   Scenario: Creating an employee
     When I finish creating the following employee:
       | Name | Mobile Phone         | Email            |
       | Kyle | 440-555-1234         | kmckee@gmail.com |
-    And I view all of my employees
+    And I view all of my employe
     Then I should see the following employees listed:
       | Name | Mobile Phone         | Email            |
       | Kyle | 440-555-1234         | kmckee@gmail.com |
 
+    @wip
   Scenario: Viewing the details of an employee
     Given the following employees have been created: 
       | Name | Mobile Phone         | Email            |

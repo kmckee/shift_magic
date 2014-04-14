@@ -31,13 +31,13 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'less-rails-bootstrap'
 
-group :test do
-  gem 'rspec'
+group :test, :development do
+  gem 'rspec-rails'
   gem 'fig_newton'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'page-object'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password

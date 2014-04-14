@@ -59,8 +59,8 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 # require 'page-object'
 # require 'factory_girl'
 
-require 'rspec'
+require 'rspec-rails'
 require 'rspec-expectations'
 World(FactoryGirl::Syntax::Methods)
 World(PageObject::PageFactory)
-
+Cucumber::Rails::Database.autorun_database_cleaner = true

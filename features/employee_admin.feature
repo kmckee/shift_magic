@@ -42,6 +42,7 @@ Feature: Employee Administration
       | Name       | Mobile Phone         | Email            |
       | Kyle McKee | 111-222-3333         | kyle@nowhere.com |
 
+    @wip
   Scenario: Deleting an existing employee
     Given the following employees have been created: 
       | Name        | Mobile Phone        | Email             |

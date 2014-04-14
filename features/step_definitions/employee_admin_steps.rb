@@ -39,6 +39,6 @@ When(/^I update the employee details for "(.*?)" to the following:$/) do |employ
   end
 end
 
-When(/^I delete the employee named "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I delete the employee named "(.*?)"$/) do |employee_named|
+  visit_page(EmployeeList).delete(employee_named)
 end

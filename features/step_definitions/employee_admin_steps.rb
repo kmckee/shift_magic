@@ -28,9 +28,15 @@ Then(/^I should see the following employee details$/) do |employee|
   end
 end
 
-When(/^I update the employee details for "(.*?)" to the following:$/) do |arg1, table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+When(/^I update the employee details for "(.*?)" to the following:$/) do |employee_name, updates_table|
+  employee_id = Employee.find_by_name(employee_name).id
+  visit_page(EmployeeEdit, :using_params => { :id => employee_id }) do |page|
+    employee_updates = updates_table.symbolic_hashes.first
+    page.name = employee_updates[:name]
+    page.mobile_phone = employee_updates[:mobile_phone]
+    page.email = employee_updates[:email]
+    page.save
+  end
 end
 
 When(/^I delete the employee named "(.*?)"$/) do |arg1|

@@ -5,11 +5,11 @@ Feature: Employee Directory
 
   Scenario: Displaying a list of employees 
     Given the following employees have been created: 
-      | Name | Mobile Phone Number  | Email            |
+      | Name | Mobile Phone         | Email            |
       | Kyle | 440-555-1234         | kmckee@gmail.com |
     When I view all of my employees 
     Then I should see the following employees listed: 
-      | Name | Mobile Phone Number  | Email            |
+      | Name | Mobile Phone         | Email            |
       | Kyle | 440-555-1234         | kmckee@gmail.com |
 
 

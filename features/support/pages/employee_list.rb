@@ -5,7 +5,7 @@ class EmployeeList
   table(:employee_table, :id => 'employees')
   
   def employees
-    employee_table_element.map { |row| [row[1].text, row[2].text, row[3].text] }[1..-1]
+    employee_table_element.map { |row| [row[0].text, row[1].text, row[2].text] }[1..-1]
   end
 
   def delete name

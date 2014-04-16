@@ -20,15 +20,12 @@ require 'spec_helper'
 
 describe EmployeesController do
   before(:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:user]
-    user = FactoryGirl.create(:user)
-    user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-    sign_in user
+    sign_in FactoryGirl.create(:user)
   end
   # This should return the minimal set of attributes required to create a valid
   # Employee. As you add validations to Employee, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "Bill Johnson", "email" => "BJohnson@aptobits.com", "mobile_phone" => "440-555-1234" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

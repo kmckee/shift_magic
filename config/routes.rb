@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'shift_template/new'
+
   get 'welcome/index'
 
   devise_for :users

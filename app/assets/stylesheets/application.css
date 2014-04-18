@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require twitter/bootstrap
+ *= require jquery.ui.all
  */
 
 body {

@@ -94,6 +94,8 @@ GEM
       railties (>= 3.2.16)
     json (1.8.1)
     kgio (2.9.2)
+    knockoutjs-rails (3.1.0.1)
+      railties (>= 3.1, < 5)
     less (2.5.0)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
@@ -228,6 +230,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  knockoutjs-rails
   less-rails
   less-rails-bootstrap
   mysql2

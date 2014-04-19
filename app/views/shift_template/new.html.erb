@@ -3,19 +3,15 @@
 </div>
 
 <div class="span9">
-  <h3>Shifts</h3>
-  <div id="shifts">
+  <h3>Shifts for <span data-bind="text: test"></span></h3>
+  <div id="shifts" data-bind="allowsDropAndSortOfShifts">
 
   </div>
 </div>
 
 <div class="span2">
   <h3>Positions</h3>
-  <ol id="positions">
-    <li>Host</li>
-    <li>Waiter</li>
-    <li>Cook</li>
-    <li>Bus boy</li>
-    <li>Dishwasher</li>
+  <ol id="positions" data-bind="foreach: positions">
+    <li data-bind="text: $data, draggable"></li>
   </ol>
 </div>

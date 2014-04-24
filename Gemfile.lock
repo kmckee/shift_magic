@@ -116,6 +116,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.2)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.9.2)
     multi_test (0.1.1)
     mysql2 (0.3.15)
@@ -241,6 +243,7 @@ DEPENDENCIES
   knockoutjs-rails
   less-rails
   less-rails-bootstrap
+  momentjs-rails
   mysql2
   page-object
   rails (= 4.1.0)

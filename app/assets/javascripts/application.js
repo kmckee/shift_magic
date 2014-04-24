@@ -16,5 +16,6 @@
 //= require knockout 
 //= require knockout.mapping
 //= require twitter/bootstrap
+//= require moment
 //= require turbolinks
 //= require_tree .

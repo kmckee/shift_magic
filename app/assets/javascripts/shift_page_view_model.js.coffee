@@ -1,25 +1,20 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-#
 #= require knockout
+#= require knockout.mapping
 
-window.App = {}
-
-fakeServerData = {
-  positions: ["Server", "Hostess", "Dishwasher"]
-  shifts: []
-  test: "Kyle"
-}
+window.App ?= {}
 
 class App.ShiftPageViewModel
   constructor: (data) ->
     @positions = ko.observableArray(data.positions)
-    @shifts = ko.observableArray(data.shifts)
-    @test = ko.observable(data.test)
+    ko.mapping.fromJS(data, shiftMapping, this)
+    
+  shiftMapping =
+    'shifts':
+      create: (options) ->
+        return new App.ShiftViewModel(options.data)
 
-class ShiftViewModel
+class App.ShiftViewModel
   constructor: (position, startTime, endTime) ->
     @position = ko.observable(position)
     @startTime = ko.observable(startTime)
-    @endTime = k.observable(endTime)
+    @endTime = ko.observable(endTime)

@@ -14,7 +14,7 @@ class App.ShiftPageViewModel
         return new App.ShiftViewModel(options.data)
 
 class App.ShiftViewModel
-  constructor: (position, startTime, endTime) ->
-    @position = ko.observable(position)
-    @startTime = ko.observable(startTime)
-    @endTime = ko.observable(endTime)
+  constructor: (data) ->
+    @position = ko.observable(data.position)
+    @startTime = ko.observable(data.startTime)
+    @endTime = ko.observable(data.endTime)

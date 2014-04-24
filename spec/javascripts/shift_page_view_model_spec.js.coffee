@@ -1,5 +1,4 @@
-#= require jquery
-#= require knockout 
+#= require spec_helper
 #= require shift_page_view_model
 
 describe 'ShiftPageViewModel', ->
@@ -31,4 +30,4 @@ describe 'ShiftPageViewModel', ->
   it 'maps the shifts to ShiftViewModels', ->
     @sampleData.shifts = [@sampleShift]
     viewModel = new App.ShiftPageViewModel(@sampleData)
-    expect(viewModel.shifts.pop() instanceof App.ShiftViewModel).toBe(true)
+    expect(viewModel.shifts.pop()).toBeInstanceOf(App.ShiftViewModel)

@@ -1,6 +1,6 @@
 #= require knockout
 #= require knockout.mapping
-#= require moment
+#= require shift_view_model
 
 window.App ?= {}
 
@@ -13,9 +13,3 @@ class App.ShiftPageViewModel
     'shifts':
       create: (options) ->
         return new App.ShiftViewModel(options.data)
-
-class App.ShiftViewModel
-  constructor: (data) ->
-    @position = ko.observable(data.position)
-    @startTime = ko.observable(moment(data.startTime, 'H'))
-    @endTime = ko.observable(moment(data.endTime, 'H'))

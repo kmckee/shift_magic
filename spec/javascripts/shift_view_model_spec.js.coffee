@@ -32,3 +32,8 @@ describe 'App.ShiftViewModel', ->
       @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftSidePercentage()).toBe(0)
+
+    it 'is 50 for a shift starting at noon', ->
+      @sampleData.startTime = '12:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.leftSidePercentage()).toBe(50)

@@ -10,4 +10,5 @@ class App.ShiftViewModel
     @startTime = ko.observable(moment(data.startTime, 'H'))
     @endTime = ko.observable(moment(data.endTime, 'H'))
     @templateDurationInMinutes = ko.observable(24*60)
-    @leftSidePercentage = ko.observable(0)
+    @leftSidePercentage = ko.computed =>
+      (@startTime().hours() / 24) * 100

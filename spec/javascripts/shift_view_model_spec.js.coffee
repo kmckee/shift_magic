@@ -22,3 +22,13 @@ describe 'App.ShiftViewModel', ->
     @sampleData.endTime = '10:00:00'
     viewModel = new App.ShiftViewModel(@sampleData)
     expect(viewModel.endTime()).toBeSameMomentAs(moment('10:00:00', 'H'))
+
+  it 'knows the template duration in minutes', ->
+    viewModel = new App.ShiftViewModel(@sampleData)
+    expect(viewModel.templateDurationInMinutes()).toBe(24*60)
+
+  describe 'calculating the left side as a percentage', ->
+    it 'is 0 for a shift starting at midnight', ->
+      @sampleData.startTime = '00:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.leftSidePercentage()).toBe(0)

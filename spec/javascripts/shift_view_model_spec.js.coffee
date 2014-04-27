@@ -37,3 +37,8 @@ describe 'App.ShiftViewModel', ->
       @sampleData.startTime = '12:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftSidePercentage()).toBe(50)
+
+    it 'takes minutes into account', ->
+      @sampleData.startTime = '12:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.leftSidePercentage()).toBeGreaterThan(50)

@@ -7,6 +7,7 @@ describe 'App.ShiftViewModel', ->
       position: 'Server'
       startTime: '08:00:00'
       endTime: '13:00:00'
+    @twentyFourHourTime = 'HH:mm:ss'
 
   it 'has a position', ->
     @sampleData.position = 'Waiter'
@@ -16,12 +17,12 @@ describe 'App.ShiftViewModel', ->
   it 'has a start time', ->
     @sampleData.startTime = '14:00:00'
     viewModel = new App.ShiftViewModel(@sampleData)
-    expect(viewModel.startTime()).toBeSameMomentAs(moment('14:00:00', 'H'))
+    expect(viewModel.startTime()).toBeSameMomentAs(moment('14:00:00', @twentyFourHourTime))
 
   it 'has an end time', ->
     @sampleData.endTime = '10:00:00'
     viewModel = new App.ShiftViewModel(@sampleData)
-    expect(viewModel.endTime()).toBeSameMomentAs(moment('10:00:00', 'H'))
+    expect(viewModel.endTime()).toBeSameMomentAs(moment('10:00:00', @twentyFourHourTime))
 
   it 'knows the template duration in minutes', ->
     viewModel = new App.ShiftViewModel(@sampleData)
@@ -39,6 +40,11 @@ describe 'App.ShiftViewModel', ->
       expect(viewModel.leftSidePercentage()).toBe(50)
 
     it 'takes minutes into account', ->
-      @sampleData.startTime = '12:00:00'
+      @sampleData.startTime = '12:59:59'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftSidePercentage()).toBeGreaterThan(50)
+
+    it 'takes rounds to a whole number', ->
+      @sampleData.startTime = '08:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.leftSidePercentage()).toBe(33)

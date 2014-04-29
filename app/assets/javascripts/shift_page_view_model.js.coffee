@@ -6,7 +6,6 @@ window.App ?= {}
 
 class App.ShiftPageViewModel
   constructor: (data) ->
-    @positions = ko.observableArray(data.positions)
     ko.mapping.fromJS(data, shiftMapping, this)
     
   shiftMapping =

@@ -6,11 +6,16 @@ describe 'App.ShiftPageViewModel', ->
     @sampleData =
       positions: ["Server", "Hostess", "Dishwasher"]
       shifts: []
-      test: "Kyle"
+      shiftName: "Kyle"
     @sampleShift =
       position: "Server"
       startTime: "08:00:00"
       endTime: "13:00:00"
+
+  it 'has a shift name', ->
+    @sampleData.shiftName = "Kyle"
+    viewModel = new App.ShiftPageViewModel(@sampleData)
+    expect(viewModel.shiftName()).toBe("Kyle")
 
   it 'has a list of available positions', ->
     @sampleData.positions = ["Server", "Hostess"]

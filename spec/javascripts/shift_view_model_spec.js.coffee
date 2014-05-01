@@ -44,7 +44,28 @@ describe 'App.ShiftViewModel', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftSidePercentage()).toBeGreaterThan(50)
 
-    it 'takes rounds to a whole number', ->
+    it 'rounds to a whole number', ->
       @sampleData.startTime = '08:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftSidePercentage()).toBe(33)
+
+  describe 'calculating the right side as a percentage', ->
+    it 'is 100 for a shift ending at midnight', ->
+      @sampleData.endTime = '24:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.rightSidePercentage()).toBe(100)
+
+    it 'is 50 for a shift ending at noon', ->
+      @sampleData.endTime = '12:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.rightSidePercentage()).toBe(50)
+
+    it 'is 75 for a shift ending at 6pm', ->
+      @sampleData.endTime = '18:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.rightSidePercentage()).toBe(75)
+    
+    it 'takes minutes into account', ->
+      @sampleData.startTime = '12:59:59'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.rightSidePercentage()).toBeGreaterThan(50)

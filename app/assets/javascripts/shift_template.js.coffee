@@ -24,6 +24,12 @@ ko.bindingHandlers.allowShiftDrop =
           endTime: '24:00:00'
         }))
 
+ko.bindingHandlers.resizableShift =
+  init: (element) ->
+   $(element).resizable({handles: 'e, w', grid: 50}) 
+    
+
+
 $ ->
   fakeServerData =
     positions: ["Server", "Hostess", "Dishwasher"]

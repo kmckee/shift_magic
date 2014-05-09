@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 #= require knockout
+#= require knockout-sortable
 
 ko.bindingHandlers.draggable =
   init: (element) ->
@@ -10,25 +11,23 @@ ko.bindingHandlers.draggable =
       appendTo: "body"
       helper: "clone"
 
-ko.bindingHandlers.allowsDropAndSortOfShifts =
+ko.bindingHandlers.allowShiftDrop =
   init: (element) ->
     $(element).droppable
       activeClass: "ui-state-default"
       hoverClass: "ui-state-hover"
       accept: ":not(.ui-sortable-helper)"
       drop: (event, ui) ->
-        $(this).find(".placeholder").remove()
-        $("<div></div>").text(ui.draggable.text()).resizable({handles: 'e, w', grid: 50}).appendTo(this)
-    .sortable
-      items: "div"
-      placeholder: "ui-state-highlight"
-      sort: ->
-        $(this).removeClass("ui-state-default")
+        window.viewModel.shifts.push(new App.ShiftViewModel({
+          position: ui.draggable.text()
+          startTime: '00:00:00'
+          endTime: '24:00:00'
+        }))
 
 $ ->
   fakeServerData =
     positions: ["Server", "Hostess", "Dishwasher"]
     shifts: []
     shiftName: "Kyle"
-
-  ko.applyBindings(new App.ShiftPageViewModel(fakeServerData))
+  window.viewModel = new App.ShiftPageViewModel(fakeServerData)
+  ko.applyBindings(window.viewModel)

@@ -4,14 +4,17 @@
 
 <div class="span9">
   <h3>Shifts for <span data-bind="text: shiftName"></span></h3>
-  <div id="shifts" data-bind="allowsDropAndSortOfShifts">
-
+  <div id="shifts" data-bind="sortable: shifts, allowShiftDrop">
+    <div data-bind="text: position">
+    </div>
+    <!--  <div id="shifts" data-bind="allowsDropAndSortOfShifts">
+    </div> -->
   </div>
 </div>
 
 <div class="span2">
   <h3>Positions</h3>
-  <ol id="positions" data-bind="foreach: positions">
+  <ol id="positions" data-bind="sortable: positions">
     <li data-bind="text: $data, draggable"></li>
   </ol>
 </div>

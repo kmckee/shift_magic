@@ -18,8 +18,7 @@ class App.ShiftViewModel
       $("#shifts").width()
 
     @leftPixelOffset = ko.computed =>
-      minutesBetweenTimeAndTemplateStart = @startTime().diff(@templateStartTime(), 'minutes')
-      ratio = minutesBetweenTimeAndTemplateStart / @templateDurationInMinutes()
+      ratio = @_getDurationInMinutes(@templateStartTime, @startTime) / @templateDurationInMinutes()
       Math.round(@maximumWidth() * ratio)
     
     @widthInPixels = ko.computed =>
@@ -28,12 +27,3 @@ class App.ShiftViewModel
 
   _getDurationInMinutes: (start, end) ->
     end().diff(start(), 'minutes')
-    
-
-  _calculatePercentageForTime: (time) ->
-    minutesBetweenTimeAndTemplateStart = time.diff(@templateStartTime(), 'minutes')
-    ratio = minutesBetweenTimeAndTemplateStart / @templateDurationInMinutes()
-    rounded = Math.round(ratio * 100)
-
-
-

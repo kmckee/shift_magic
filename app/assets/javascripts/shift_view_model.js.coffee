@@ -14,6 +14,7 @@ class App.ShiftViewModel
     @templateStartTime = ko.observable(moment('00:00:00', twentyFourHourTime))
     @templateEndTime = ko.observable(moment('23:59:59', twentyFourHourTime))
     @templateDurationInMinutes = ko.observable(24*60)
+    
     @maximumWidth = ko.computed ->
       $("#shifts").width()
 
@@ -23,7 +24,7 @@ class App.ShiftViewModel
     
     @widthInPixels = ko.computed =>
       ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()
-      @maximumWidth() * ratio
+      Math.round(@maximumWidth() * ratio)
 
   _getDurationInMinutes: (start, end) ->
     end().diff(start(), 'minutes')

@@ -79,3 +79,9 @@ describe 'App.ShiftViewModel', ->
       @sampleData.endTime = '12:59:59'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBeGreaterThan(100)
+
+    it 'rounds to whole numbers only', ->
+      @sampleData.startTime = '00:00:00'
+      @sampleData.endTime = '08:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.widthInPixels()).toBe(67)

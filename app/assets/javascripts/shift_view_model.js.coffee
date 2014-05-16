@@ -22,8 +22,13 @@ class App.ShiftViewModel
       ratio = minutesBetweenTimeAndTemplateStart / @templateDurationInMinutes()
       Math.round(@maximumWidth() * ratio)
     
-    @rightSidePercentage = ko.computed =>
-      @_calculatePercentageForTime(@endTime())
+    @widthInPixels = ko.computed =>
+      ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()
+      @maximumWidth() * ratio
+
+  _getDurationInMinutes: (start, end) ->
+    end().diff(start(), 'minutes')
+    
 
   _calculatePercentageForTime: (time) ->
     minutesBetweenTimeAndTemplateStart = time.diff(@templateStartTime(), 'minutes')

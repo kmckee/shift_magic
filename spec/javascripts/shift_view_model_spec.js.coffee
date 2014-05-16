@@ -55,23 +55,27 @@ describe 'App.ShiftViewModel', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftPixelOffset()).toBe(67)
 
-  describe 'calculating the right side as a percentage', ->
-    it 'is 100 for a shift ending at midnight', ->
+  describe 'calculating the width in pixel', ->
+    it 'is 200 for a shift ending at midnight with a maximum width of 200', ->
+      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '24:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.rightSidePercentage()).toBe(100)
+      expect(viewModel.widthInPixels()).toBe(200)
 
-    it 'is 50 for a shift ending at noon', ->
+    it 'is 100 for a shift ending at noon with a maximum width of 200 and a start time at midnight', ->
+      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '12:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.rightSidePercentage()).toBe(50)
+      expect(viewModel.widthInPixels()).toBe(100)
 
-    it 'is 75 for a shift ending at 6pm', ->
+    it 'is 150 for a shift ending at noon with a maximum width of 200 and a start time at midnight', ->
+      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '18:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.rightSidePercentage()).toBe(75)
+      expect(viewModel.widthInPixels()).toBe(150)
     
     it 'takes minutes into account', ->
-      @sampleData.startTime = '12:59:59'
+      @sampleData.startTime = '00:00:00'
+      @sampleData.endTime = '12:59:59'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.rightSidePercentage()).toBeGreaterThan(50)
+      expect(viewModel.widthInPixels()).toBeGreaterThan(100)

@@ -1,3 +1,4 @@
+#= require jquery
 #= require spec_helper
 #= require shift_view_model
 
@@ -8,6 +9,7 @@ describe 'App.ShiftViewModel', ->
       startTime: '08:00:00'
       endTime: '13:00:00'
     @twentyFourHourTime = 'HH:mm:ss'
+    $.fn.width = -> 200
 
   it 'has a position', ->
     @sampleData.position = 'Waiter'
@@ -28,26 +30,30 @@ describe 'App.ShiftViewModel', ->
     viewModel = new App.ShiftViewModel(@sampleData)
     expect(viewModel.templateDurationInMinutes()).toBe(24*60)
 
-  describe 'calculating the left side as a percentage', ->
+  it 'knows the maximum width a shift can be displayed as', ->
+    viewModel = new App.ShiftViewModel(@sampleData)
+    expect(viewModel.maximumWidth()).toBe(200)
+
+  describe 'calculating the left side as a pixel offset', ->
     it 'is 0 for a shift starting at midnight', ->
       @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.leftSidePercentage()).toBe(0)
+      expect(viewModel.leftPixelOffset()).toBe(0)
 
-    it 'is 50 for a shift starting at noon', ->
+    it 'is 100 for a shift starting at noon with a maximum width of 200', ->
       @sampleData.startTime = '12:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.leftSidePercentage()).toBe(50)
+      expect(viewModel.leftPixelOffset()).toBe(100)
 
     it 'takes minutes into account', ->
       @sampleData.startTime = '12:59:59'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.leftSidePercentage()).toBeGreaterThan(50)
+      expect(viewModel.leftPixelOffset()).toBeGreaterThan(100)
 
     it 'rounds to a whole number', ->
       @sampleData.startTime = '08:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      expect(viewModel.leftSidePercentage()).toBe(33)
+      expect(viewModel.leftPixelOffset()).toBe(67)
 
   describe 'calculating the right side as a percentage', ->
     it 'is 100 for a shift ending at midnight', ->

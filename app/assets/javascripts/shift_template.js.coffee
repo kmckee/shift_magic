@@ -26,9 +26,13 @@ ko.bindingHandlers.allowShiftDrop =
 
 ko.bindingHandlers.resizableShift =
   init: (element) ->
-   $(element).resizable({handles: 'e, w', grid: 50}) 
-    
-
+   $(element).resizable({
+     handles: 'e, w',
+     grid: 50,
+     stop: (event, ui) ->
+       shiftViewModel = ko.contextFor(ui.element[0])
+       shiftViewModel.setShiftDurationOrSomething(10, 4)
+    })
 
 $ ->
   fakeServerData =

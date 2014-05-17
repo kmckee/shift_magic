@@ -78,57 +78,54 @@ describe 'App.ShiftViewModel', ->
 
 
   describe 'calculating the width in pixels', ->
-    it 'is 200 for a shift ending at midnight with a maximum width of 200', ->
+    beforeEach ->
       @sampleData.startTime = '00:00:00'
+
+    it 'is 200 for a shift ending at midnight with a maximum width of 200', ->
       @sampleData.endTime = '24:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBe(200)
 
     it 'is 100 for a shift ending at noon with a maximum width of 200 and a start time at midnight', ->
-      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '12:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBe(100)
 
     it 'is 150 for a shift ending at noon with a maximum width of 200 and a start time at midnight', ->
-      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '18:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBe(150)
     
     it 'takes minutes into account', ->
-      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '12:59:59'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBeGreaterThan(100)
 
     it 'rounds to whole numbers only', ->
-      @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '08:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.widthInPixels()).toBe(67)
 
   describe 'setting the width in pixels', ->
-    it 'is noon when set to half the maximum width', ->
+    beforeEach ->
       @sampleData.startTime = '00:00:00'
+
+    it 'is noon when set to half the maximum width', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       viewModel.widthInPixels(100)
       expect(viewModel.endTime()).toBeTime('12:00:00')
 
     it 'is 6pm when set to 3/4 of the maximum width', ->
-      @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       viewModel.widthInPixels(150)
       expect(viewModel.endTime()).toBeTime('18:00:00')
 
     it 'rounds down to the nearest minute', ->
-      @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       viewModel.widthInPixels(101)
       expect(viewModel.endTime()).toBeTime('12:07:00')
     
     it 'rounds up to the nearest minute', ->
-      @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
       viewModel.widthInPixels(103)
       expect(viewModel.endTime()).toBeTime('12:22:00')

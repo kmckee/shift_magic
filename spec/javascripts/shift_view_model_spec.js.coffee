@@ -121,4 +121,14 @@ describe 'App.ShiftViewModel', ->
       viewModel.widthInPixels(150)
       expect(viewModel.endTime()).toBeTime('18:00:00')
 
-
+    it 'rounds down to the nearest minute', ->
+      @sampleData.startTime = '00:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.widthInPixels(101)
+      expect(viewModel.endTime()).toBeTime('12:07:00')
+    
+    it 'rounds up to the nearest minute', ->
+      @sampleData.startTime = '00:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.widthInPixels(103)
+      expect(viewModel.endTime()).toBeTime('12:22:00')

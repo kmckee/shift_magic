@@ -34,7 +34,9 @@ class App.ShiftViewModel
         ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()
         Math.round(@maximumWidth() * ratio)
       write: (value) =>
-        newMoment = moment('23:59:59', twentyFourHourTime)
+        minutesPerPixel = @templateDurationInMinutes() / @maximumWidth()
+        durationInMinutes = minutesPerPixel * value
+        newMoment = @startTime().add('minutes', durationInMinutes) 
         @endTime(newMoment)
     }
 

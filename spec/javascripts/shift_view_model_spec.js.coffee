@@ -109,8 +109,16 @@ describe 'App.ShiftViewModel', ->
       expect(viewModel.widthInPixels()).toBe(67)
 
   describe 'setting the width in pixels', ->
-    it 'is midnight when set to the maximum width', ->
+    it 'is noon when set to half the maximum width', ->
       @sampleData.startTime = '00:00:00'
       viewModel = new App.ShiftViewModel(@sampleData)
-      viewModel.widthInPixels(200)
-      expect(viewModel.endTime()).toBeTime('23:59:59')
+      viewModel.widthInPixels(100)
+      expect(viewModel.endTime()).toBeTime('12:00:00')
+
+    it 'is 6pm when set to 3/4 of the maximum width', ->
+      @sampleData.startTime = '00:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.widthInPixels(150)
+      expect(viewModel.endTime()).toBeTime('18:00:00')
+
+

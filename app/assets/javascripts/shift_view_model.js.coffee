@@ -29,9 +29,14 @@ class App.ShiftViewModel
         @startTime(newMoment)
     }
     
-    @widthInPixels = ko.computed =>
-      ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()
-      Math.round(@maximumWidth() * ratio)
+    @widthInPixels = ko.computed {
+      read: =>
+        ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()
+        Math.round(@maximumWidth() * ratio)
+      write: (value) =>
+        newMoment = moment('23:59:59', twentyFourHourTime)
+        @endTime(newMoment)
+    }
 
   _getDurationInMinutes: (start, end) ->
     end().diff(start(), 'minutes')

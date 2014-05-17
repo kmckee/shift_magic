@@ -55,7 +55,29 @@ describe 'App.ShiftViewModel', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.leftPixelOffset()).toBe(67)
 
-  describe 'calculating the width in pixel', ->
+  describe 'setting the left side as a pixel offset', ->
+    it 'changes the start time to midnight when it is 0', ->
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.leftPixelOffset(0)
+      expect(viewModel.startTime()).toBeSameMomentAs(moment('00:00:00', @twentyFourHourTime))
+
+    it 'changes the start time to noon when it is half the maximum width', ->
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.leftPixelOffset(100)
+      expect(viewModel.startTime()).toBeSameMomentAs(moment('12:00:00', @twentyFourHourTime))
+
+    it 'rounds down to the nearest minute', ->
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.leftPixelOffset(1)
+      expect(viewModel.startTime()).toBeTime('00:07:00')
+    
+    it 'rounds up to the nearest minute', ->
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.leftPixelOffset(3)
+      expect(viewModel.startTime()).toBeTime('00:22:00')
+
+
+  describe 'calculating the width in pixels', ->
     it 'is 200 for a shift ending at midnight with a maximum width of 200', ->
       @sampleData.startTime = '00:00:00'
       @sampleData.endTime = '24:00:00'

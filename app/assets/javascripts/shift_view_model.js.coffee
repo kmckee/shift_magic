@@ -18,9 +18,16 @@ class App.ShiftViewModel
     @maximumWidth = ko.computed ->
       $("#shifts").width()
 
-    @leftPixelOffset = ko.computed =>
-      ratio = @_getDurationInMinutes(@templateStartTime, @startTime) / @templateDurationInMinutes()
-      Math.round(@maximumWidth() * ratio)
+    @leftPixelOffset = ko.computed {
+      read: =>
+        ratio = @_getDurationInMinutes(@templateStartTime, @startTime) / @templateDurationInMinutes()
+        Math.round(@maximumWidth() * ratio)
+      write: (value) =>
+        ratio = value / @maximumWidth()
+        elapsedMinutes = Math.round(@templateDurationInMinutes() * ratio)
+        newMoment = @templateStartTime().add('minutes', elapsedMinutes)
+        @startTime(newMoment)
+    }
     
     @widthInPixels = ko.computed =>
       ratio = @_getDurationInMinutes(@startTime, @endTime) / @templateDurationInMinutes()

@@ -17,6 +17,14 @@ beforeEach ->
         compare: (actual, expected) ->
           return {
             pass: actual.isSame(expected)
-            message: "expected #{actual} to be same moment as #{expected}"
+            message: "expected #{actual.format("HH:mm:ss")} to be same moment as #{expected.format("HH:mm:ss")}"
+          }
+      }
+    toBeTime: ->
+      return {
+        compare: (actual, expected) ->
+          return {
+            pass: actual.format('HH:mm:ss') == expected
+            message: "expected #{actual.format("HH:mm:ss")} to be same time as #{expected}"
           }
       }

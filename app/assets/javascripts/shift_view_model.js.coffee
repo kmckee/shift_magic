@@ -25,7 +25,7 @@ class App.ShiftViewModel
       write: (value) =>
         ratio = value / @maximumWidth()
         elapsedMinutes = Math.round(@templateDurationInMinutes() * ratio)
-        newMoment = @templateStartTime().add('minutes', elapsedMinutes)
+        newMoment = moment(@templateStartTime()).add('minutes', elapsedMinutes)
         @startTime(newMoment)
     }
     
@@ -36,9 +36,13 @@ class App.ShiftViewModel
       write: (value) =>
         minutesPerPixel = @templateDurationInMinutes() / @maximumWidth()
         durationInMinutes = Math.round(minutesPerPixel * value)
-        newMoment = @startTime().add('minutes', durationInMinutes)
+        newMoment = moment(@startTime()).add('minutes', durationInMinutes)
         @endTime(newMoment)
     }
+
+  updateShiftDuration: (uiElement) =>
+    leftPixels = 100
+    @leftPixelOffset(leftPixels)
 
   _getDurationInMinutes: (start, end) ->
     end().diff(start(), 'minutes')

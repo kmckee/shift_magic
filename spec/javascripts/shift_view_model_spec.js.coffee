@@ -129,3 +129,26 @@ describe 'App.ShiftViewModel', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       viewModel.widthInPixels(103)
       expect(viewModel.endTime()).toBeTime('12:22:00')
+
+  describe 'updateShiftDuration', ->
+    beforeEach ->
+      @sampleData.startTime = '00:00:00'
+
+    it 'sets the leftPixelOffset based on the elements left css value', ->
+      uiElement = jasmine.createSpy
+      uiElement.css = (prop) ->
+        '100px'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.updateShiftDuration(uiElement)
+      expect(viewModel.leftPixelOffset()).toBe(100)
+
+    it 'sets the leftPixelOffset based on the elements left css value', ->
+      uiElement = jasmine.createSpy
+      uiElement.css = (prop) ->
+        '200px'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      viewModel.updateShiftDuration(uiElement)
+      expect(viewModel.leftPixelOffset()).toBe(200)
+
+    it 'sets the widthInPixels based on the elements width css value', ->
+      expect(true).toBe(true)

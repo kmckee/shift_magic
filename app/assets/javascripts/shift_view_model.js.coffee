@@ -41,7 +41,7 @@ class App.ShiftViewModel
     }
 
   updateShiftDuration: (uiElement) =>
-    leftPixels = 100
+    leftPixels = parseInt(uiElement.css('left'), 10)
     @leftPixelOffset(leftPixels)
 
   _getDurationInMinutes: (start, end) ->

@@ -10,6 +10,8 @@ class App.ShiftViewModel
     twentyFourHourTime = 'HH:mm:ss'
     @position = ko.observable(data.position)
     @startTime = ko.observable(moment(data.startTime, twentyFourHourTime))
+    @startTimeFormatted = ko.computed =>
+      @startTime().format()
     @endTime = ko.observable(moment(data.endTime, twentyFourHourTime))
     @templateStartTime = ko.observable(moment('00:00:00', twentyFourHourTime))
     @templateEndTime = ko.observable(moment('23:59:59', twentyFourHourTime))
@@ -43,6 +45,8 @@ class App.ShiftViewModel
   updateShiftDuration: (uiElement) =>
     leftPixels = parseInt(uiElement.css('left'), 10)
     @leftPixelOffset(leftPixels)
+    widthPixels = parseInt(uiElement.css('width'), 10)
+    @widthInPixels(widthPixels)
 
   _getDurationInMinutes: (start, end) ->
     end().diff(start(), 'minutes')

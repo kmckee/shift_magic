@@ -31,7 +31,7 @@ ko.bindingHandlers.resizableShift =
      grid: 50,
      stop: (event, ui) ->
        element = ui.element[0]
-       shiftViewModel = ko.contextFor(element)
+       shiftViewModel = ko.contextFor(element).$data
        shiftViewModel.updateShiftDuration($(element))
     })
 

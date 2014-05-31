@@ -130,6 +130,13 @@ describe 'App.ShiftViewModel', ->
       viewModel.widthInPixels(103)
       expect(viewModel.endTime()).toBeTime('12:22:00')
 
+  describe 'display time formatting', ->
+    it 'displays the start time formatted properly', ->
+      @sampleData.startTime = '08:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.startTimeFormatted()).toBe('8:00 am')
+
+
   describe 'updateShiftDuration', ->
     beforeEach ->
       @sampleData.startTime = '00:00:00'
@@ -155,4 +162,13 @@ describe 'App.ShiftViewModel', ->
       expect(@viewModel.leftPixelOffset()).toBe(0)
 
     it 'sets the widthInPixels based on the elements width css value', ->
-      expect(true).toBe(true)
+      @uiElement.css = (prop) ->
+        '200'
+      @viewModel.updateShiftDuration(@uiElement)
+      expect(@viewModel.widthInPixels()).toBe(200)
+    
+    it 'sets the widthInPixels based on the elements width css value', ->
+      @uiElement.css = (prop) ->
+        '400'
+      @viewModel.updateShiftDuration(@uiElement)
+      expect(@viewModel.widthInPixels()).toBe(400)

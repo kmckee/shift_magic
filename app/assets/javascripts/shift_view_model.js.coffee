@@ -8,11 +8,14 @@ window.App ?= {}
 class App.ShiftViewModel
   constructor: (data) ->
     twentyFourHourTime = 'HH:mm:ss'
+    displayTime = 'h:mm a'
     @position = ko.observable(data.position)
     @startTime = ko.observable(moment(data.startTime, twentyFourHourTime))
     @startTimeFormatted = ko.computed =>
-      @startTime().format()
+      @startTime().format(displayTime)
     @endTime = ko.observable(moment(data.endTime, twentyFourHourTime))
+    @endTimeFormatted = ko.computed =>
+      @endTime().format(displayTime)
     @templateStartTime = ko.observable(moment('00:00:00', twentyFourHourTime))
     @templateEndTime = ko.observable(moment('23:59:59', twentyFourHourTime))
     @templateDurationInMinutes = ko.observable(24*60)

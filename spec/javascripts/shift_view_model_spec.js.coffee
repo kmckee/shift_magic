@@ -136,6 +136,10 @@ describe 'App.ShiftViewModel', ->
       viewModel = new App.ShiftViewModel(@sampleData)
       expect(viewModel.startTimeFormatted()).toBe('8:00 am')
 
+    it 'displays the end time formatted properly', ->
+      @sampleData.endTime = '17:00:00'
+      viewModel = new App.ShiftViewModel(@sampleData)
+      expect(viewModel.endTimeFormatted()).toBe('5:00 pm')
 
   describe 'updateShiftDuration', ->
     beforeEach ->

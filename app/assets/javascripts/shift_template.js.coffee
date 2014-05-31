@@ -21,14 +21,14 @@ ko.bindingHandlers.allowShiftDrop =
         window.viewModel.shifts.push(new App.ShiftViewModel({
           position: ui.draggable.text()
           startTime: '00:00:00'
-          endTime: '24:00:00'
+          endTime: '23:59:59'
         }))
 
 ko.bindingHandlers.resizableShift =
   init: (element) ->
    $(element).resizable({
      handles: 'e, w',
-     grid: 50,
+     grid: 10,
      stop: (event, ui) ->
        element = ui.element[0]
        shiftViewModel = ko.contextFor(element).$data
